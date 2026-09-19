@@ -5,12 +5,18 @@ from __future__ import annotations
 from nlp_fin.config import BASE_DIR, Settings, ensure_data_dirs, get_settings
 
 
+def test_base_dir_is_project_root() -> None:
+    assert (BASE_DIR / "pyproject.toml").is_file()
+    assert BASE_DIR.name == "NLP_FIN"
+
+
 def test_settings_defaults() -> None:
     settings = Settings(_env_file=None)
     assert settings.app_name == "nlp-fin"
     assert settings.log_level == "INFO"
     assert settings.data_dir == BASE_DIR / "data"
     assert settings.raw_dir == BASE_DIR / "data" / "raw"
+    assert settings.ocr.tesseract_cmd is None
 
 
 def test_get_settings_returns_singleton() -> None:

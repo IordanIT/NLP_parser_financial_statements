@@ -6,6 +6,13 @@ requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.7,<3",
     "pydantic-settings>=2.3,<3",
+    "pymupdf>=1.24,<2",
+    "pymupdf-fonts>=1.0,<2",
+    "pytesseract>=0.3.13,<1",
+    "Pillow>=10,<12",
+    "openpyxl>=3.1,<4",
+    "python-docx>=1.1,<2",
+    "beautifulsoup4>=4.12,<5",
 ]
 
 [project.optional-dependencies]
@@ -39,6 +46,7 @@ ignore = ["B008"]
 [tool.mypy]
 python_version = "3.12"
 plugins = ["pydantic.mypy"]
+ignore_missing_imports = true
 check_untyped_defs = true
 disallow_untyped_defs = true
 no_implicit_optional = true
