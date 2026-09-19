@@ -28,6 +28,12 @@ python -m venv .venv
 pip install -e ".[dev]"
 ```
 
+## Системные зависимости
+
+Для распознавания отсканированных PDF требуется Tesseract OCR с русским языком.
+На Windows: `winget install --id UB-Mannheim.TesseractOCR -e` (добавить язык Russian).
+Если исполняемый файл не в PATH, укажите его путь в `.env`: `OCR_TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe`.
+
 ## Проверка качества кода
 
 ```bash
