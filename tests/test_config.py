@@ -21,6 +21,8 @@ def test_settings_defaults() -> None:
     assert settings.noise_repeat_ratio == 0.7
     assert settings.noise_header_zone == 0.05
     assert settings.noise_footer_zone == 0.95
+    assert settings.ner_tokenizer == "ai-forever/rubert-base-cased"
+    assert settings.ner_max_length == 128
 
 
 def test_get_settings_returns_singleton() -> None:

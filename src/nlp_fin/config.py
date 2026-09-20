@@ -69,6 +69,9 @@ class Settings(BaseSettings):
     noise_header_zone: float = Field(default=0.05, ge=0, lt=1)
     noise_footer_zone: float = Field(default=0.95, gt=0, le=1)
 
+    ner_tokenizer: str = "ai-forever/rubert-base-cased"
+    ner_max_length: int = 128
+
     @property
     def ocr(self) -> OcrSettings:
         """Настройки OCR-распознавания."""
