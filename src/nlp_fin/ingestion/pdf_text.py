@@ -41,14 +41,29 @@ class PdfTextParser(ReportParser):
                         continue
                     cleaned = text.strip()
                     block_type = self._classify_block(page.rect.height, y0, y1, cleaned)
-                    sections.append(Section(page=page_index, block_type=block_type, text=cleaned))
+                    sections.append(
+                        Section(
+                            page=page_index,
+                            block_type=block_type,
+                            text=cleaned,
+                            y_top=round(y0 / page.rect.height, 4),
+                            y_bottom=round(y1 / page.rect.height, 4),
+                        )
+                    )
                     raw_parts.append(cleaned)
 
                 for table in tables:
                     rows = [[(cell or "").strip() for cell in row] for row in table.extract()]
                     text = rows_to_text(rows)
                     sections.append(
-                        Section(page=page_index, block_type=BlockType.TABLE, text=text, rows=rows)
+                        Section(
+                            page=page_index,
+                            block_type=BlockType.TABLE,
+                            text=text,
+                            rows=rows,
+                            y_top=round(table.bbox[1] / page.rect.height, 4),
+                            y_bottom=round(table.bbox[3] / page.rect.height, 4),
+                        )
                     )
                     raw_parts.append(text)
 

@@ -35,12 +35,14 @@ class SourceInfo(BaseModel):
 
 
 class Section(BaseModel):
-    """Блок документа с текстом или таблицей."""
+    """Блок документа с текстом, таблицей и позицией относительно высоты страницы (0..1)."""
 
     page: int
     block_type: BlockType
     text: str = ""
     rows: list[list[str]] = Field(default_factory=list)
+    y_top: float | None = None
+    y_bottom: float | None = None
 
 
 class ParsedDocument(BaseModel):

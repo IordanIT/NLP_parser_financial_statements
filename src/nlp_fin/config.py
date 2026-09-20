@@ -8,7 +8,7 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BASE_DIR = Path(__file__).resolve().parents[2]
@@ -62,6 +62,12 @@ class Settings(BaseSettings):
 
     pdf_text_min_chars: int = 50
     pdf_sample_pages: int = 3
+
+    chunk_max_words: int = 128
+    chunk_overlap_ratio: float = Field(default=0.05, ge=0, le=0.5)
+    noise_repeat_ratio: float = Field(default=0.7, ge=0, le=1)
+    noise_header_zone: float = Field(default=0.05, ge=0, lt=1)
+    noise_footer_zone: float = Field(default=0.95, gt=0, le=1)
 
     @property
     def ocr(self) -> OcrSettings:

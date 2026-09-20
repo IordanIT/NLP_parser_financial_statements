@@ -34,6 +34,14 @@ pip install -e ".[dev]"
 На Windows: `winget install --id UB-Mannheim.TesseractOCR -e` (добавить язык Russian).
 Если исполняемый файл не в PATH, укажите его путь в `.env`: `OCR_TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe`.
 
+Для лемматизации нужна русская модель spaCy:
+
+```bash
+python -m spacy download ru_core_news_md
+```
+
+Без неё тесты лемматизации пропускаются (`pytest.mark.skipif`).
+
 ## Проверка качества кода
 
 ```bash

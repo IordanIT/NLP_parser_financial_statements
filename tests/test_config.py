@@ -16,6 +16,11 @@ def test_settings_defaults() -> None:
     assert settings.data_dir == BASE_DIR / "data"
     assert settings.raw_dir == BASE_DIR / "data" / "raw"
     assert settings.ocr.tesseract_cmd is None
+    assert settings.chunk_max_words == 128
+    assert settings.chunk_overlap_ratio == 0.05
+    assert settings.noise_repeat_ratio == 0.7
+    assert settings.noise_header_zone == 0.05
+    assert settings.noise_footer_zone == 0.95
 
 
 def test_get_settings_returns_singleton() -> None:
