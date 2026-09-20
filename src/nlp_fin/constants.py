@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Literal
+
 FINANCIAL_METRICS: tuple[str, ...] = (
     "выручка",
     "себестоимость",
@@ -24,12 +26,24 @@ FINANCIAL_METRICS: tuple[str, ...] = (
     "операционный_денежный_поток",
 )
 
-ENTITY_TAGS: tuple[str, ...] = (
-    "metric",
-    "amount",
-    "period",
-    "currency",
-    "unit",
+METRIC_NAME: Literal["metric"] = "metric"
+METRIC_AMOUNT: Literal["amount"] = "amount"
+METRIC_PERIOD: Literal["period"] = "period"
+METRIC_CURRENCY: Literal["currency"] = "currency"
+METRIC_UNIT: Literal["unit"] = "unit"
+
+NER_ENTITY_TYPES: tuple[str, ...] = (
+    METRIC_NAME,
+    METRIC_AMOUNT,
+    METRIC_PERIOD,
+    METRIC_CURRENCY,
+    METRIC_UNIT,
+)
+
+NON_ENTITY = "O"
+
+BIOES_LABELS: tuple[str, ...] = (NON_ENTITY,) + tuple(
+    f"{edge}-{entity}" for entity in NER_ENTITY_TYPES for edge in "BIES"
 )
 
 RISK_CLASSES: tuple[str, ...] = (
