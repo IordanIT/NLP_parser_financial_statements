@@ -72,6 +72,22 @@ class Settings(BaseSettings):
     ner_tokenizer: str = "ai-forever/rubert-base-cased"
     ner_max_length: int = 128
 
+    ner_epochs: int = 6
+    ner_batch_size: int = 16
+    ner_grad_accumulation: int = 4
+    ner_learning_rate: float = Field(default=2e-5, gt=0)
+    ner_warmup_ratio: float = Field(default=0.06, ge=0, le=1)
+    ner_patience: int = 2
+
+    risk_max_length: int = 256
+    risk_epochs: int = 6
+    risk_batch_size: int = 16
+    risk_grad_accumulation: int = 4
+    risk_learning_rate: float = Field(default=2e-5, gt=0)
+    risk_warmup_ratio: float = Field(default=0.06, ge=0, le=1)
+    risk_patience: int = 2
+    risk_dropout: float = Field(default=0.3, ge=0, le=1)
+
     @property
     def ocr(self) -> OcrSettings:
         """Настройки OCR-распознавания."""
