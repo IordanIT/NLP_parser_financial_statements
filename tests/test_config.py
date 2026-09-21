@@ -23,6 +23,20 @@ def test_settings_defaults() -> None:
     assert settings.noise_footer_zone == 0.95
     assert settings.ner_tokenizer == "ai-forever/rubert-base-cased"
     assert settings.ner_max_length == 128
+    assert settings.ner_epochs == 6
+    assert settings.ner_batch_size == 16
+    assert settings.ner_grad_accumulation == 4
+    assert settings.ner_learning_rate == 2e-5
+    assert settings.ner_warmup_ratio == 0.06
+    assert settings.ner_patience == 2
+    assert settings.risk_max_length == 256
+    assert settings.risk_epochs == 6
+    assert settings.risk_batch_size == 16
+    assert settings.risk_grad_accumulation == 4
+    assert settings.risk_learning_rate == 2e-5
+    assert settings.risk_warmup_ratio == 0.06
+    assert settings.risk_patience == 2
+    assert settings.risk_dropout == 0.3
 
 
 def test_get_settings_returns_singleton() -> None:
