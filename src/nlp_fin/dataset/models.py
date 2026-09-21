@@ -10,6 +10,8 @@ EntityLabel = Literal[
     "metric", "amount", "period", "currency", "unit"
 ]
 
+RiskClass = Literal["low", "medium", "high"]
+
 
 class NERSpan(BaseModel):
     """Сущность в тексте чанка с границами в символах."""
@@ -51,3 +53,4 @@ class AnnotationRecord(BaseModel):
 
     source: str
     chunks: list[AnnotatedChunk] = Field(default_factory=list)
+    risk: RiskClass | None = None
